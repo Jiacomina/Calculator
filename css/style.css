@@ -4,16 +4,17 @@ background: -webkit-linear-gradient(to right, #182848, #4b6cb7);  /* Chrome 10-2
 background: linear-gradient(to right, #182848, #4b6cb7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 font-family: 'Open Sans';
+width: 100vw;
+width: 100vh;
+min-width: 200px;
+overflow: hidden;
 }
 .app-container{
-	position: relative;
+	position: absolute;
 	width: 300px;
-	height: 525px;
+	/*height: 525px;*/
 	border-radius: 10px;
 	background-color: #fafafa;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, 50%);
 }
 .button{
 	text-align: center;
@@ -34,29 +35,54 @@ font-family: 'Open Sans';
 .button-row{
 	position: relative;
 	display:block;
-	width: 100%;
 	margin-top: 3%;
-	border: 1px solid red;
+	/*border: 1px solid red;*/
 	height: 7.4%;
 }
 .screen{
 	position: relative;
 	display: block;
-	width: 100%;
+	border-radius: 10px;
 	background: lightgrey;
-	margin-top: 30px;
-	border: 1px solid blue;
-	height: 14.8%;
+	margin-top: 3%;
+	margin-left: 3%;
+	margin-right: 3%;
+	height: 60px;
+	text-align: right;
 }
 .orange-button{
 	background-color: orange;
 	border-color: orange;
 }
-
-@media screen and (max-width: 750px){
+.display-top{
+	font-size: 150%;
+}
+.display-bottom{
+	font-size: 150%;
+	text-align: right;
+}
+input{
+	width: 90%;
+	display: block;
+	background-color: inherit;
+	border: none;
+	border: 0px solid red;
+	outline: none;
+	margin: 10px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+@media screen and (max-width: 350px){
 	.app-container{
 	width: 100vw;
 	height: 100vh;
+	}
 }
+@media screen and (min-width: 351px){
+	.app-container{
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	}
 }
 
