@@ -1,9 +1,10 @@
 body{
-background: #4b6cb7;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #182848, #4b6cb7);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #182848, #4b6cb7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-font-family: 'Open Sans';
+font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+font-size: 0px;
+background: #f2f6f8; /* Old browsers */
+background: -moz-linear-gradient(-45deg, #f2f6f8 0%, #d8e1e7 56%, #b5c6d0 84%, #b5c6d0 95%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg, #f2f6f8 0%,#d8e1e7 56%,#b5c6d0 84%,#b5c6d0 95%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg, #f2f6f8 0%,#d8e1e7 56%,#b5c6d0 84%,#b5c6d0 95%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 width: 100vw;
 width: 100vh;
 min-width: 200px;
@@ -11,74 +12,239 @@ overflow: hidden;
 }
 .app-container{
 	position: absolute;
-	width: 300px;
+	width: 325px;
 	/*height: 525px;*/
-	border-radius: 10px;
-	background-color: #fafafa;
+	background-color: white;
+}
+.night-app-container{
+	background-color: #404040;
 }
 .button{
 	text-align: center;
-	vertical-align: center;
 	position: relative;
-	background-color: lightgrey;
-	color: black;
+	background-color: white;
 	display: inline-block;
-	margin-left: 0.5%;
-	margin-right: 0.5%;
-	width: 17.8%;
-	font-size: 110%;
-	height: 100%;
+	width: 20%;
+	color: black;
+	font-size: 23px;
+	height: 50px;
 	outline: none;
-	border-radius: 10px;
+	border: none;
 	cursor: pointer;
+	overflow: auto;
+	vertical-align: middle;
+	opacity: 0.7;
+}
+.button:hover {
+	opacity: 1;
+}
+.night-button{
+	background-color: #404040;
+	color: white;
 }
 .button-row{
 	position: relative;
-	display:block;
-	margin-top: 3%;
-	/*border: 1px solid red;*/
-	height: 7.4%;
+	display: block;
+	text-align: center;
+	height: 10%;
+	overflow: auto;
+}
+
+/*DISPLAY MODE BUTTONS*/
+.toggle-display-mode{
+	opacity: 0.8;
+	position: relative;
+	outline: none;
+	border: none;
+	background: none;
+	top: -280px;
+	left: 160px;
+}
+.toggle-display-mode img{
+	height: 15px;
+	width: auto;
+	cursor: pointer;
+}
+
+.day-mode-button{
+	content: url("https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2016/png/iconmonstr-weather-1.png&r=255&g=255&b=255");
+}
+.night-mode-button{
+	content: url("https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2016/png/iconmonstr-weather-112.png&r=255&g=255&b=255");
+}
+/*CLEAR ALL BUTTON*/
+.clear-all{
+	opacity: 0.8;
+	position: relative;
+	outline: none;
+	border: none;
+	background: none;
+	top: -280px;
+	left: 40px;
+}
+.clear-all img{
+	height: 12px;
+	width: auto;
+	cursor: pointer;
+}
+
+.clear-all-icon{
+	content: url("https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-redo-4.png&r=255&g=255&b=255");
 }
 .screen{
 	position: relative;
 	display: block;
-	border-radius: 10px;
-	background: lightgrey;
-	margin-top: 3%;
-	margin-left: 3%;
-	margin-right: 3%;
-	height: 60px;
+	background: #F2F2F2;
+	height: 250px;
+	text-align: right;
+	overflow: auto;
+	padding: 15px;
+	margin-bottom: -22px; /*offset night mode button*/
+}
+.menu-bar{
+	position: relative;
+	display: block;
+	background: #404040;
+	height: 25px;
+	overflow: auto;
+	vertical-align: middle;
 	text-align: right;
 }
+.menu-button{
+	position: relative;
+	display: inline-block;
+	height: 25px;
+	width: 25px;
+	cursor: pointer;
+	background: none;
+	outline: none;
+	border: none;
+	font-family: 'Open Sans';
+	color: white;
+	overflow: hidden;
+	opacity: 0.8;
+	text-align: center;
+	vertical-align: middle;
+}
+.menu-button:hover{
+	opacity: 1;
+}
+.bar{
+	border-left: 1px solid grey;
+	height: 70%;
+	width: 0%;
+}
+.small-font{
+	font-size: 13px;
+	height: 17px;
+}
+.large-font{
+	font-size: 17px;
+}
+.night-screen{
+	background: #262626;
+	color: white;
+}
+
+/*day buttons*/
 .orange-button{
-	background-color: orange;
-	border-color: orange;
+	background-color: #F5C343;
+	color: white;
+}
+.green-button{
+	background-color: #70C0C9;
+	color: white;
+	opacity: 0.9;
+	font-size: 20px;
+}
+.grey-button{
+	background-color: #F2F2F2;
+	font-size: 18px;
+}
+/*night buttons*/
+.black-button{
+	background-color: #262626;
+}
+.dark-orange-button{
+	background-color: #DE8344;
+}
+.blue-button{
+	background-color: #408F92;
 }
 .display-top{
-	font-size: 150%;
+	text-align: left;
 }
-.display-bottom{
-	font-size: 150%;
-	text-align: right;
+.power-button{
+	font-size: 18px;
 }
-input{
-	width: 90%;
-	display: block;
+.op-button{
+	font-size: 25px;
+}
+.line{
 	background-color: inherit;
+	width: 75%;
+	font-family: 'Open Sans';
+	font-size: 17px;
+	font-weight: lighter;
+	letter-spacing: 0.8px;
+	display: block;
+	color: inherit;
 	border: none;
-	border: 0px solid red;
 	outline: none;
+	min-height: 27px;
 	margin: 10px;
-	margin-bottom: 0px;
-	margin-top: 0px;
 }
-@media screen and (max-width: 350px){
+textarea{
+	margin-bottom: 0px;
+	overflow: hidden;
+	resize: none;
+	overflow: hidden;
+}
+.hidden-div{
+	display: none;
+	margin-bottom: 0px;
+	overflow: hidden;
+	resize: none;
+	overflow: hidden;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+.output-div{
+	width: 100%;
+	text-align: right;
+	margin-top: 0px;
+	margin-left: 0px;
+	border-bottom: 1px solid lightgrey;
+}
+.input-div{
+	text-align: left;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.error-text{
+	color: red;
+	font-size: 13px;
+	opacity: 0.8;
+}
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+textarea::-webkit-input-placeholder {
+     opacity: 0.8; /*Change the opacity between 0 and 1*/
+}
+@media screen and (max-width: 250px){
 	.app-container{
 	width: 100vw;
 	height: 100vh;
 	}
 }
-@media screen and (min-width: 351px){
+@media screen and (min-width: 251px){
 	.app-container{
 	left: 50%;
 	top: 50%;

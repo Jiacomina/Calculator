@@ -3,44 +3,54 @@
   <head>
     <title></title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
     <script src="js/index.js"></script>
   </head>
   <body>
   <div class = "app-container">
-    <div class = "screen">
-      <input id = "display-top" class = "display-top">
-      <input id = "display-bottom" class = "display-bottom">
+    <div id = 'menu-bar' class = 'menu-bar no-select'>
+      <div id = 'small-font' class = 'small-font menu-button no-select'>A</div>
+      <div class = 'bar menu-button no-select'></div>
+      <div id = 'large-font' class = 'large-font menu-button no-select'>A</div>
     </div>
+    <div id = "screen" class = "screen">
+      <textarea id = "display-top" class = "display-top line" placeholder="Type here..." rows="1" autofocus ></textarea>
+    </div>
+    <button class = "toggle-display-mode no-select">
+      <img id = "toggle-display-button" class = "day-mode-button">
+    </button>
+    <button class = "clear-all no-select">
+      <img id = "clear-all" class = "clear-all-icon">
+    </button>
     <div class = "button-row">
       <button id = "seven" class = "button">7</button>
       <button id = "eight" class = "button">8</button>
       <button id = "nine" class = "button">9</button>
-      <button id = "delete" class = "button orange-button">DEL</button>
-      <button id = "clearAll" class = "button orange-button">AC</button>
+      <button id = "delete" class = "button green-button">DEL</button>
+      <button id = "clearAll" class = "button green-button">AC</button>
     </div>
     <div class = "button-row">
       <button id = "four" class = "button">4</button>
       <button id = "five" class = "button">5</button>
       <button id = "six" class = "button">6</button>
-      <button id = "multiply" class = "button">&#215</button>
-      <button id = "divide" class = "button">&#247</button>
+      <button id = "multiply" class = "button op-button">&#215</button>
+      <button id = "divide" class = "button op-button">&#247</button>
     </div>
     <div class = "button-row">
       <button id = "one" class = "button">1</button>
       <button id = "two" class = "button">2</button>
       <button id = "three" class = "button">3</button>
-      <button id = "plus" class = "button">+</button>
-      <button id = "minus" class = "button">-</button>
+      <button id = "plus" class = "button op-button">+</button>
+      <button id = "minus" class = "button op-button">-</button>
     </div>
     <div class = "button-row">
       <button id = "zero" class = "button">0</button>
       <button id = "decimal" class = "button">.</button>
-      <button id = "powerTen" class = "button">&#215;10<sup><i>x</i></sup></button>
-      <button id = "answer" class = "button">Ans</button>
-      <button id = "equals" class = "button">=</button>
+      <button id = "powerTen" class = "button power-button">&#215;10<sup><i>x</i></sup></button>
+      <button id = "answer" class = "button grey-button">Ans</button>
+      <button id = "equals" class = "button orange-button">=</button>
     </div>
   </div>
   </body>
