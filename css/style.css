@@ -6,14 +6,18 @@ background: -moz-linear-gradient(-45deg, #f2f6f8 0%, #d8e1e7 56%, #b5c6d0 84%, #
 background: -webkit-linear-gradient(-45deg, #f2f6f8 0%,#d8e1e7 56%,#b5c6d0 84%,#b5c6d0 95%); /* Chrome10-25,Safari5.1-6 */
 background: linear-gradient(135deg, #f2f6f8 0%,#d8e1e7 56%,#b5c6d0 84%,#b5c6d0 95%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 width: 100vw;
-width: 100vh;
+height: 100vh;
 min-width: 200px;
+margin: 0px;
 overflow: hidden;
 }
 .app-container{
 	position: absolute;
 	width: 325px;
-	/*height: 525px;*/
+	height: 500px;
+	min-height: 280px;
+	min-width: 294px;
+	max-height: 100vh;
 	background-color: white;
 }
 .night-app-container{
@@ -27,7 +31,7 @@ overflow: hidden;
 	width: 20%;
 	color: black;
 	font-size: 23px;
-	height: 50px;
+	height: 100%;
 	outline: none;
 	border: none;
 	cursor: pointer;
@@ -46,13 +50,20 @@ overflow: hidden;
 	position: relative;
 	display: block;
 	text-align: center;
-	height: 10%;
+	height: 25%;
 	overflow: auto;
+}
+.button-box{
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	height: 200px;
 }
 
 /*DISPLAY MODE BUTTONS*/
 .toggle-display-mode{
 	left: 5px;
+	top: 6px;
 }
 .toggle-display-mode img{
 	height: 13px;
@@ -66,20 +77,6 @@ overflow: hidden;
 .night-mode-button{
 	content: url("https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2016/png/iconmonstr-weather-114.png&r=255&g=255&b=255");
 	height: 10px;
-}
-/*CLEAR ALL BUTTON*/
-.clear-all{
-	left: 275px;
-}
-
-.clear-all img{
-	height: 12px;
-	width: auto;
-	cursor: pointer;
-}
-
-.clear-all-icon{
-	content: url("https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2013/png/iconmonstr-trash-can-1.png&r=255&g=255&b=255");
 }
 
 .tooltiptext {
@@ -119,11 +116,10 @@ overflow: hidden;
 	position: relative;
 	display: block;
 	background: #F2F2F2;
-	height: 250px;
+	height: calc(100% - 230px - 20px);
 	text-align: right;
-	overflow: auto;
-	padding: 15px;
-	margin-bottom: -28px; /*offset night mode button*/
+	padding: 10px;
+	overflow: scroll;
 }
 .menu-bar{
 	position: relative;
@@ -137,25 +133,41 @@ overflow: hidden;
 }
 .menu-button{
 	opacity: 0.7;
-	position: relative;
+	position: absolute;
 	outline: none;
 	display: inline-block;
 	border: none;
 	background: none;
-	top: -276px;
 }
 
 .menu-button:hover {
 	opacity: 1;
 }
 
+/*CLEAR ALL BUTTON*/
+.clear-all{
+	right: 10px;
+	top: 8px;
+}
+
+.clear-all img{
+	height: 12px;
+	width: auto;
+	cursor: pointer;
+}
+
+.clear-all-icon{
+	content: url("https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2013/png/iconmonstr-trash-can-1.png&r=255&g=255&b=255");
+}
+
+/*FONT SIZE BUTTONS*/
 .font-size-box{
 	position: relative;
 	outline: none;
 	display: inline-block;
 	border: none;
 	background: none;
-	top: -274px;
+	top: 3px;
 }
 .font-size-button{
 	position: relative;
@@ -169,7 +181,6 @@ overflow: hidden;
 	font-family: 'Open Sans';
 	color: white;
 	overflow: hidden;
-	top: -8px;
 	opacity: 0.8;
 	text-align: center;
 	vertical-align: middle;
@@ -202,7 +213,7 @@ overflow: hidden;
 	width: 20%;
 	color: black;
 	font-size: 23px;
-	height: 50px;
+	height: 100%;
 	outline: none;
 	border: none;
 	cursor: pointer;
@@ -302,20 +313,21 @@ textarea{
 textarea::-webkit-input-placeholder {
      opacity: 0.8; /*Change the opacity between 0 and 1*/
 }
-@media screen and (max-width: 412px){
+@media screen and (max-width: 450.999px){
 	.app-container{
 		width: 100vw;
 		height: 100vh;
-	}
-	.body{
-		background-color: green;
+		top: 0px;
+		left: 0px;
+		bottom: 0px;
 	}
 }
-@media screen and (min-width: 413px){
+
+@media screen and (min-width: 451px){
 	.app-container{
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
 	}
 }
 

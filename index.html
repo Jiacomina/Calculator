@@ -12,6 +12,26 @@
   <body>
   <div class = "app-container">
     <div id = 'menu-bar' class = 'menu-bar no-select'>
+      <!-- day/night mode button-->
+      <button class = "toggle-display-mode menu-button no-select">
+        <img id = "toggle-display-button" class = "day-mode-button">
+      </button>
+
+      <!-- font-size buttons-->
+      <div id = 'font-size-button' class = 'font-size-box no-select'>
+          <div id = 'small-font' class = 'small-font font-size-button no-select'>A
+          </div>
+          <div class = 'bar font-size-button no-select'></div>
+          <div id = 'large-font' class = 'large-font font-size-button no-select'>A
+          </div>
+      </div>
+
+      <!-- clear all button-->
+      <div class = "clear-all menu-button no-select tooltip">
+        <img id = "clear-all" class = "clear-all-icon">
+        <span class="tooltiptext">clear all</span>
+      </div>
+
     </div>
 
     <!-- calculator screen-->
@@ -19,27 +39,8 @@
       <textarea id = "display-top" class = "display-top line" placeholder="Type here..." rows="1" autofocus ></textarea>
     </div>
 
-    <!-- day/night mode button-->
-    <button class = "toggle-display-mode menu-button no-select">
-      <img id = "toggle-display-button" class = "day-mode-button">
-    </button>
-
-    <!-- clear all button-->
-    <div class = "clear-all menu-button no-select tooltip">
-      <img id = "clear-all" class = "clear-all-icon">
-      <span class="tooltiptext">clear all</span>
-    </div>
-
-    <!-- font-size buttons-->
-    <div id = 'font-size-button' class = 'font-size-box no-select'>
-        <div id = 'small-font' class = 'small-font font-size-button no-select'>A
-        </div>
-        <div class = 'bar font-size-button no-select'></div>
-        <div id = 'large-font' class = 'large-font font-size-button no-select'>A
-        </div>
-    </div>
-
     <!-- Calculator buttons-->
+    <div class = "button-box">
     <div class = "button-row">
       <button id = "seven" class = "button">7</button>
       <button id = "eight" class = "button">8</button>
@@ -67,6 +68,7 @@
       <button id = "powerTen" class = "button power-button">&#215;10<sup><i>x</i></sup></button>
       <button id = "answer" class = "answer lighter-font grey-button">Ans</button>
       <button id = "equals" class = "button orange-button">=</button>
+    </div>
     </div>
   </div>
   </body>
