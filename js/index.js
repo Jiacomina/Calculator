@@ -10,6 +10,14 @@
 var dayMode = true;
 var answer = "";
 $(document).ready(function(){
+
+	// disable keyboard on small screens
+	var mq = window.matchMedia( "(max-width: 450.999px)" );
+	if (mq.matches) {
+	    document.getElementById('display-top').readOnly = true;
+	}
+}
+
 	// change style of display - night/day
 	$(".toggle-display-mode").on("click", function(){
 		toggleDisplayMode();
