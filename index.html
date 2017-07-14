@@ -7,27 +7,39 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
     <script src="js/index.js"></script>
+    <meta name="viewport" content="initial-scale=1.0">
   </head>
   <body>
   <div class = "app-container">
     <div id = 'menu-bar' class = 'menu-bar no-select'>
-      <div id = 'small-font' class = 'small-font menu-button tooltip no-select'>A
-      <span class="tooltiptext"> - font</span>
-      </div>
-      <div class = 'bar menu-button no-select'></div>
-      <div id = 'large-font' class = 'large-font menu-button tooltip no-select'>A
-      <span class="tooltiptext"> + font</span></div>
     </div>
+
+    <!-- calculator screen-->
     <div id = "screen" class = "screen">
       <textarea id = "display-top" class = "display-top line" placeholder="Type here..." rows="1" autofocus ></textarea>
     </div>
-    <button class = "toggle-display-mode no-select">
+
+    <!-- day/night mode button-->
+    <button class = "toggle-display-mode menu-button no-select">
       <img id = "toggle-display-button" class = "day-mode-button">
     </button>
-    <div class = "clear-all no-select tooltip">
+
+    <!-- clear all button-->
+    <div class = "clear-all menu-button no-select tooltip">
       <img id = "clear-all" class = "clear-all-icon">
       <span class="tooltiptext">clear all</span>
     </div>
+
+    <!-- font-size buttons-->
+    <div id = 'font-size-button' class = 'font-size-box no-select'>
+        <div id = 'small-font' class = 'small-font font-size-button no-select'>A
+        </div>
+        <div class = 'bar font-size-button no-select'></div>
+        <div id = 'large-font' class = 'large-font font-size-button no-select'>A
+        </div>
+    </div>
+
+    <!-- Calculator buttons-->
     <div class = "button-row">
       <button id = "seven" class = "button">7</button>
       <button id = "eight" class = "button">8</button>
@@ -53,7 +65,7 @@
       <button id = "zero" class = "button">0</button>
       <button id = "decimal" class = "button">.</button>
       <button id = "powerTen" class = "button power-button">&#215;10<sup><i>x</i></sup></button>
-      <button id = "answer" class = "button grey-button">Ans</button>
+      <button id = "answer" class = "answer lighter-font grey-button">Ans</button>
       <button id = "equals" class = "button orange-button">=</button>
     </div>
   </div>

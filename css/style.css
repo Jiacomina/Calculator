@@ -22,7 +22,7 @@ overflow: hidden;
 .button{
 	text-align: center;
 	position: relative;
-	background-color: white;
+	background-color: #f2f2f2;
 	display: inline-block;
 	width: 20%;
 	color: black;
@@ -33,13 +33,13 @@ overflow: hidden;
 	cursor: pointer;
 	overflow: auto;
 	vertical-align: middle;
-	opacity: 0.7;
+	opacity: 0.65;
 }
 .button:hover {
 	opacity: 1;
 }
 .night-button{
-	background-color: #404040;
+	background-color: #2c2c2c;
 	color: white;
 }
 .button-row{
@@ -52,16 +52,10 @@ overflow: hidden;
 
 /*DISPLAY MODE BUTTONS*/
 .toggle-display-mode{
-	opacity: 0.8;
-	position: relative;
-	outline: none;
-	border: none;
-	background: none;
-	top: -280px;
-	left: 160px;
+	left: 5px;
 }
 .toggle-display-mode img{
-	height: 15px;
+	height: 13px;
 	width: auto;
 	cursor: pointer;
 }
@@ -70,18 +64,12 @@ overflow: hidden;
 	content: url("https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2016/png/iconmonstr-weather-1.png&r=255&g=255&b=255");
 }
 .night-mode-button{
-	content: url("https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2016/png/iconmonstr-weather-112.png&r=255&g=255&b=255");
+	content: url("https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2016/png/iconmonstr-weather-114.png&r=255&g=255&b=255");
+	height: 10px;
 }
 /*CLEAR ALL BUTTON*/
 .clear-all{
-	opacity: 0.8;
-	position: relative;
-	outline: none;
-	display: inline-block;
-	border: none;
-	background: none;
-	top: -280px;
-	left: 40px;
+	left: 275px;
 }
 
 .clear-all img{
@@ -91,7 +79,7 @@ overflow: hidden;
 }
 
 .clear-all-icon{
-	content: url("https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-redo-4.png&r=255&g=255&b=255");
+	content: url("https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2013/png/iconmonstr-trash-can-1.png&r=255&g=255&b=255");
 }
 
 .tooltiptext {
@@ -100,15 +88,15 @@ overflow: hidden;
     color: black;
     text-align: center;
     border-radius: 6px;
-    padding: 5px;
+    padding: 3px;
     position: absolute;
     z-index: 1;
-    height: 18px;
+    height: 12px;
     width: 60px;
-    font-size: 12px;
+    font-size: 10px;
     bottom: 250%;
     left: 0%;
-    margin-left: -30px;
+    margin-left: -32px;
     opacity: 0;
     transition: opacity 0.5s;
 }
@@ -118,7 +106,6 @@ overflow: hidden;
     position: absolute;
     top: 100%;
     left: 50%;
-    margin-left: -5px;
     border-width: 5px;
     border-style: solid;
     border-color: white transparent transparent transparent;
@@ -136,18 +123,41 @@ overflow: hidden;
 	text-align: right;
 	overflow: auto;
 	padding: 15px;
-	margin-bottom: -22px; /*offset night mode button*/
+	margin-bottom: -28px; /*offset night mode button*/
 }
 .menu-bar{
 	position: relative;
 	display: block;
 	background: #404040;
-	height: 25px;
+	height: 30px;
 	overflow: auto;
 	vertical-align: middle;
-	text-align: right;
+	text-align: left;
+	padding-left: 35px;
 }
 .menu-button{
+	opacity: 0.7;
+	position: relative;
+	outline: none;
+	display: inline-block;
+	border: none;
+	background: none;
+	top: -276px;
+}
+
+.menu-button:hover {
+	opacity: 1;
+}
+
+.font-size-box{
+	position: relative;
+	outline: none;
+	display: inline-block;
+	border: none;
+	background: none;
+	top: -274px;
+}
+.font-size-button{
 	position: relative;
 	display: inline-block;
 	height: 25px;
@@ -159,16 +169,17 @@ overflow: hidden;
 	font-family: 'Open Sans';
 	color: white;
 	overflow: hidden;
+	top: -8px;
 	opacity: 0.8;
 	text-align: center;
 	vertical-align: middle;
 }
-.menu-button:hover{
+.font-size-button:hover {
 	opacity: 1;
 }
 .bar{
 	border-left: 1px solid grey;
-	height: 70%;
+	height: 15px;
 	width: 0%;
 }
 .small-font{
@@ -181,6 +192,23 @@ overflow: hidden;
 .night-screen{
 	background: #262626;
 	color: white;
+}
+.answer{
+	cursor: none;
+	text-align: center;
+	position: relative;
+	background-color: #f2f2f2;
+	display: inline-block;
+	width: 20%;
+	color: black;
+	font-size: 23px;
+	height: 50px;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	overflow: auto;
+	vertical-align: middle;
+	opacity: 0.65;
 }
 
 /*day buttons*/
@@ -198,6 +226,7 @@ overflow: hidden;
 	background-color: #F2F2F2;
 	font-size: 18px;
 }
+
 /*night buttons*/
 .black-button{
 	background-color: #262626;
@@ -257,16 +286,14 @@ textarea{
 	text-align: left;
 	margin-top: 0px;
 	margin-bottom: 0px;
+	opacity: 0.8;
 }
 .error-text{
 	color: red;
 	font-size: 13px;
-	opacity: 0.8;
+	opacity: 0.7;
 }
 .no-select {
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
        -moz-user-select: none; /* Firefox */
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
@@ -275,13 +302,16 @@ textarea{
 textarea::-webkit-input-placeholder {
      opacity: 0.8; /*Change the opacity between 0 and 1*/
 }
-@media screen and (max-width: 250px){
+@media screen and (max-width: 412px){
 	.app-container{
-	width: 100vw;
-	height: 100vh;
+		width: 100vw;
+		height: 100vh;
+	}
+	.body{
+		background-color: green;
 	}
 }
-@media screen and (min-width: 251px){
+@media screen and (min-width: 413px){
 	.app-container{
 	left: 50%;
 	top: 50%;

@@ -140,6 +140,21 @@ $(document).ready(function(){
 	$("#equals").on("click", function(){
 		getResult();
 	});
+	$("#answer").on("click", function(){
+		if((answer == '' || isNaN(answer)) && answer != 0) return;
+		var input = document.getElementById("display-top").value;
+		if(input[input.length - 1] != ' '){
+			if(Math.sign(answer) == -1){
+				document.getElementById("display-top").value += " - " + Math.abs(answer);
+				return;
+			}
+			else{
+				document.getElementById("display-top").value += " + " + answer;
+				return;
+			}
+		}
+		document.getElementById("display-top").value += answer;
+	});
 });
 
 
