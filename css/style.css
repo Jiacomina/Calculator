@@ -77,11 +77,13 @@ overflow: hidden;
 	opacity: 0.8;
 	position: relative;
 	outline: none;
+	display: inline-block;
 	border: none;
 	background: none;
 	top: -280px;
 	left: 40px;
 }
+
 .clear-all img{
 	height: 12px;
 	width: auto;
@@ -90,6 +92,41 @@ overflow: hidden;
 
 .clear-all-icon{
 	content: url("https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-redo-4.png&r=255&g=255&b=255");
+}
+
+.tooltiptext {
+    visibility: hidden;
+    background-color: white;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    height: 18px;
+    width: 60px;
+    font-size: 12px;
+    bottom: 250%;
+    left: 0%;
+    margin-left: -30px;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
 .screen{
 	position: relative;

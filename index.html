@@ -11,9 +11,12 @@
   <body>
   <div class = "app-container">
     <div id = 'menu-bar' class = 'menu-bar no-select'>
-      <div id = 'small-font' class = 'small-font menu-button no-select'>A</div>
+      <div id = 'small-font' class = 'small-font menu-button tooltip no-select'>A
+      <span class="tooltiptext"> - font</span>
+      </div>
       <div class = 'bar menu-button no-select'></div>
-      <div id = 'large-font' class = 'large-font menu-button no-select'>A</div>
+      <div id = 'large-font' class = 'large-font menu-button tooltip no-select'>A
+      <span class="tooltiptext"> + font</span></div>
     </div>
     <div id = "screen" class = "screen">
       <textarea id = "display-top" class = "display-top line" placeholder="Type here..." rows="1" autofocus ></textarea>
@@ -21,9 +24,10 @@
     <button class = "toggle-display-mode no-select">
       <img id = "toggle-display-button" class = "day-mode-button">
     </button>
-    <button class = "clear-all no-select">
+    <div class = "clear-all no-select tooltip">
       <img id = "clear-all" class = "clear-all-icon">
-    </button>
+      <span class="tooltiptext">clear all</span>
+    </div>
     <div class = "button-row">
       <button id = "seven" class = "button">7</button>
       <button id = "eight" class = "button">8</button>

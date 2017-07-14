@@ -27,8 +27,8 @@ $(document).ready(function(){
 	});
 
 	$("#clear-all").on("click", function(){
-
 		$(".input-div, .output-div").remove();
+		$('textarea').val("");
 	});
 
 	//when keys pressed, focus on input box
