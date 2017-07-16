@@ -37,7 +37,7 @@ overflow: hidden;
 	cursor: pointer;
 	overflow: auto;
 	vertical-align: middle;
-	opacity: 0.65;
+	opacity: 0.75;
 }
 .button:hover {
 	opacity: 1;
@@ -79,39 +79,6 @@ overflow: hidden;
 	height: 10px;
 }
 
-.tooltiptext {
-    visibility: hidden;
-    background-color: white;
-    color: black;
-    text-align: center;
-    border-radius: 6px;
-    padding: 3px;
-    position: absolute;
-    z-index: 1;
-    height: 12px;
-    width: 60px;
-    font-size: 10px;
-    bottom: 250%;
-    left: 0%;
-    margin-left: -32px;
-    opacity: 0;
-    transition: opacity 0.5s;
-}
-
-.tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    border-width: 5px;
-    border-style: solid;
-    border-color: white transparent transparent transparent;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-}
 .screen{
 	position: relative;
 	display: block;
@@ -119,7 +86,13 @@ overflow: hidden;
 	height: calc(100% - 230px - 20px);
 	text-align: right;
 	padding: 10px;
-	overflow: scroll;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	padding-right: 20px;
+}
+.screen:hover {
+	overflow-y: scroll;
+	padding-right: 10px;
 }
 .menu-bar{
 	position: relative;
@@ -137,6 +110,7 @@ overflow: hidden;
 	outline: none;
 	display: inline-block;
 	border: none;
+	overflow: hidden;
 	background: none;
 }
 
@@ -159,7 +133,39 @@ overflow: hidden;
 .clear-all-icon{
 	content: url("https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2013/png/iconmonstr-trash-can-1.png&r=255&g=255&b=255");
 }
+.tooltiptext {
+    visibility: hidden;
+    background-color: white;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 3px;
+    position: absolute;
+    z-index: 1;
+    height: 12px;
+    width: 60px;
+    font-size: 10px;
+    bottom: 250%;
+    left: 0%;
+    margin-left: -32px;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
 
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
 /*FONT SIZE BUTTONS*/
 .font-size-box{
 	position: relative;
@@ -204,22 +210,13 @@ overflow: hidden;
 	background: #262626;
 	color: white;
 }
-.answer{
-	cursor: none;
-	text-align: center;
-	position: relative;
-	background-color: #f2f2f2;
-	display: inline-block;
-	width: 20%;
-	color: black;
-	font-size: 23px;
-	height: 100%;
-	outline: none;
-	border: none;
-	cursor: pointer;
-	overflow: auto;
-	vertical-align: middle;
-	opacity: 0.65;
+.disable-button{
+	cursor: unset;
+	color: rgba(150,150,150, 0.6);
+}
+
+.disable-button:hover{
+	opacity: 0.75;
 }
 
 /*day buttons*/
@@ -232,10 +229,6 @@ overflow: hidden;
 	color: white;
 	opacity: 0.9;
 	font-size: 20px;
-}
-.grey-button{
-	background-color: #F2F2F2;
-	font-size: 18px;
 }
 
 /*night buttons*/
@@ -251,7 +244,7 @@ overflow: hidden;
 .display-top{
 	text-align: left;
 }
-.power-button{
+.small-button-font{
 	font-size: 18px;
 }
 .op-button{
@@ -272,25 +265,34 @@ overflow: hidden;
 	margin: 10px;
 }
 textarea{
-	margin-bottom: 0px;
 	overflow: hidden;
+	min-height: 17px;
+	width: 75%;
+	margin: 0px;
+	padding: 0px;
 	resize: none;
 	overflow: hidden;
 }
 .hidden-div{
-	display: none;
+	display: block;
 	margin-bottom: 0px;
 	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
+	width: 75%;
 	resize: none;
+	visibility: hidden;
 	overflow: hidden;
 	white-space: pre-wrap;
-	word-wrap: break-word;
+	word-wrap: normal;
 }
 .output-div{
 	width: 100%;
 	text-align: right;
 	margin-top: 0px;
 	margin-left: 0px;
+	color: #70C0C9;
+	font-weight: bold;
 	border-bottom: 1px solid lightgrey;
 }
 .input-div{
@@ -313,6 +315,26 @@ textarea{
 textarea::-webkit-input-placeholder {
      opacity: 0.8; /*Change the opacity between 0 and 1*/
 }
+/*::-webkit-scrollbar {
+    height: 100%;
+    width: 10px;
+    background: none;
+}*/
+
+::-webkit-scrollbar {
+    background: transparent;
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(200,200,200,0.5);
+    border-radius: 40px;
+    height: 2px;
+}
+
+/*::-webkit-scrollbar-corner {
+    background: transparent;
+}*/
 @media screen and (max-width: 450.999px){
 	.app-container{
 		width: 100vw;

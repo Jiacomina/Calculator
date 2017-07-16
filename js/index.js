@@ -8,7 +8,8 @@
  *
  */
 var dayMode = true;
-var answer = "";
+var answer = null;
+var fontsize = $('.line').css('font-size');
 $(document).ready(function(){
 
 	// disable keyboard on small screens
@@ -16,7 +17,6 @@ $(document).ready(function(){
 	if (mq.matches) {
 	    document.getElementById('display-top').readOnly = true;
 	}
-}
 
 	// change style of display - night/day
 	$(".toggle-display-mode").on("click", function(){
@@ -24,72 +24,20 @@ $(document).ready(function(){
 	});
 	// change font size
 	$("#small-font").on("click", function(){
-		var smallerFont = parseInt($('.line').css("font-size")) - 1;
-		$('.line').css('font-size', smallerFont + "px");
-		$('.line').css('min-height', smallerFont + "px");
+		fontsize = parseInt($('.line').css("font-size")) - 1;
+		$('.line').css('font-size', fontsize + "px");
+		$('.line').css('min-height', fontsize + "px");
 	});
 	$("#large-font").on("click", function(){
-		var largerFont = parseInt($('.line').css("font-size")) + 1;
-		$('.line').css('font-size', largerFont + "px");
-		$('.line').css('min-height', largerFont + "px");
+		fontsize = parseInt($('.line').css("font-size")) + 1;
+		$('.line').css('font-size', fontsize + "px");
+		$('.line').css('min-height', fontsize + "px");
 	});
 
 	$("#clear-all").on("click", function(){
 		$(".input-div, .output-div").remove();
 		$('textarea').val("");
 	});
-
-	//when keys pressed, focus on input box
-	$(document).on('keyup', function(e)
-	{
-    $("#display-top").focus()
-	});
-	// allow only numbers and operators as input into calculator
-	$('textarea').on('keypress', function (event) {
-	    var regex = new RegExp("^[0-9.]+$");
-	    var spregex = new RegExp("^[0-9. ]+$");
-	    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-	    if (!regex.test(key)) { // not a valid character
-	    	event.preventDefault();
-	    	if(key == "*")
-	    		$('textarea').val($('textarea').val() + " " + String.fromCharCode(215) + " ");
-	    	else if(key == "/")
-	    		$('textarea').val($('textarea').val() + " " + String.fromCharCode(247) + " ");
-	    	else if(key == "-")
-	    		$('textarea').val($('textarea').val() + " - ");
-	    	else if(key == "+")
-	    		$('textarea').val($('textarea').val() + " + ");
-	    	else if(key == "="  || event.keyCode == 13){
-	    		getResult();
-	    	}
-	    }
-	    else{ // check if space has been removed after operator, add if it has.
-	    	if(!spregex.test($('textarea').val()[$('textarea').val().length-1])){
-	    		event.preventDefault();
-	    		$('textarea').val($('textarea').val() + " " + key);
-	    	}
-	    }
-	});
-
-	var txt = $('.display-top'),
-	hiddenDiv = $(document.createElement('div')),
-	content = null;
-
-	hiddenDiv.addClass('hidden-div line');
-
-	$('.screen').append(hiddenDiv);
-
-	txt.bind('keyup', function() {
-
-    content = txt.val();
-    content = content.replace(/\n/g, '<br>');
-    hiddenDiv.html(content);
-    $(this).css('height', hiddenDiv.height());
-
-    // clear screen
-
-
-});
 
 	$("#zero").on("click", function(){
 		document.getElementById("display-top").value += "0";
@@ -149,7 +97,7 @@ $(document).ready(function(){
 		getResult();
 	});
 	$("#answer").on("click", function(){
-		if((answer == '' || isNaN(answer)) && answer != 0) return;
+		if((answer == null || isNaN(answer)) && answer != 0) return;
 		var input = document.getElementById("display-top").value;
 		if(input[input.length - 1] != ' '){
 			if(Math.sign(answer) == -1){
@@ -163,8 +111,66 @@ $(document).ready(function(){
 		}
 		document.getElementById("display-top").value += answer;
 	});
+	$("#power").on("click", function(){
+			document.getElementById("display-top").value += 'e';
+	});
+
+	//when keys pressed, focus on input box
+	// allow only numbers and operators as input into calculator
+	$(document).on('keypress', function (event) {
+		$("#display-top").focus();
+	    var regex = new RegExp("^[0-9.]+$");
+	    var spregex = new RegExp("^[0-9. ]+$");
+	    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+	    if (!regex.test(key)) { // not a valid character
+	    	event.preventDefault();
+	    	if(key == "*")
+	    		$('textarea').val($('textarea').val() + " " + String.fromCharCode(215) + " ");
+	    	else if(key == "/")
+	    		$('textarea').val($('textarea').val() + " " + String.fromCharCode(247) + " ");
+	    	else if(key == "-")
+	    		$('textarea').val($('textarea').val() + " - ");
+	    	else if(key == "+")
+	    		$('textarea').val($('textarea').val() + " + ");
+	    	else if(key == "="  || event.keyCode == 13){
+	    		getResult();
+	    	}
+	    }
+	    else{ // check if space has been removed after operator, add if it has.
+	    	if(!spregex.test($('textarea').val()[$('textarea').val().length-1])){
+	    		event.preventDefault();
+	    		$('textarea').val($('textarea').val() + ' ' + key);
+	    	}
+	    }
+	    
+	});
+
+	$(document).on('click', function (event) {
+		growTextArea();
+	});
+	$(document).on('keyup', function (event) {
+		growTextArea();
+	});
+
 });
 
+// adjust textarea input size when document clicked or key pressed
+function growTextArea(){
+	var txt = $('.display-top');
+	hiddenDiv = $(document.createElement('div'));
+	content = null;
+
+	hiddenDiv.addClass('hidden-div line');
+
+	$('.screen').append(hiddenDiv);
+
+    content = txt.val();
+    console.log(content);
+    hiddenDiv.html(content);
+    console.log("height: " + hiddenDiv.height());
+    $('.display-top').css('height', hiddenDiv.height());
+    $('.hidden-div').remove();
+}
 
 function toggleDisplayMode(){
 	if(dayMode == true){ // change display mode to night
@@ -190,6 +196,7 @@ function toggleDisplayMode(){
 	}
 }
 function getResult(){
+	var oldAnswer = answer;
 	var equation = $('textarea').val();
 	if(equation == "") return;
 
@@ -209,6 +216,11 @@ function getResult(){
 	if(!isDigit(answer)){
 		outputDiv.addClass('error-text');
 	}
+	else{
+		if(oldAnswer == null){
+			$('#answer').removeClass('disable-button'); // 
+		}
+	}
 	$('.screen').append(outputDiv);
 
 	input = $(document.getElementById("display-top"));
@@ -217,9 +229,13 @@ function getResult(){
 
 	var objDiv = document.getElementById("screen");
 	objDiv.scrollTop = objDiv.scrollHeight;
+
+	// ensure output and input div have correct font-size
+	$('.input-div , .output-div').css('font-size', fontsize + 'px');
 }
 
 function calResult(equation){
+	equation = equation.replace(/e/g, " e ");
 	equation = equation.replace(/  /g, " "); //remove double spaces
 	equation = equation.split(" "); // split equation by single spaces
 
@@ -232,14 +248,21 @@ function calResult(equation){
 	var eqLength = equation.length;
 	var resultArray = [];
 
-	console.log("combining + and -");
+	//transform e into simple arithmetic notation where e = ' x 10^'
+	for(var e = 0; e < eqLength; e++){
+		if(equation[e] == 'e'){
+			var powered = Math.pow(10,parseFloat(equation[e+1]));
+			equation[e] = '\u00D7';
+			equation[e+1] = powered;
+		}
+	}
 	// COMBINE + and - SIGNS
 	var i = 0;
 	if(isSign(equation[equation.length-1])){
 				return 'Error: cannot end expression with operator.'; //invalid syntax, sign/s not valid because it is not succeeded by a number.
 			}
 	while( i < eqLength){
-		if(!(/^[0-9\u00F7\u00D7\.\+\-]+$/.test(equation[i]))){
+		if(!(/^[0-9e\u00F7\u00D7\.\+\-]+$/.test(equation[i]))){
 			console.log("Invalid Syntax: " + equation + ".");
 			return 'Invalid Syntax at: ' + i + "in " + equation[i] + ".";
 		}
@@ -264,6 +287,7 @@ function calResult(equation){
 			i++;
 		}
 	}
+
 	var signedArrLen = resultArray.length;
 
 	// Combine x and ÷
@@ -281,7 +305,7 @@ function calResult(equation){
 				offset = 1;
 			}
 			if(!(isNum(resultArray[k+2+offset]))){
-				return 'Error: duplicate operator.';
+				return 'Error: duplicate orperator.';
 			}
 			else{
 				if(resultArray[k+1] == '\u00D7'){//multiply
@@ -315,6 +339,10 @@ function calResult(equation){
 				if(resultArray[l] == '-'){
 					add = !add;
 					continue;
+				}
+				if(isNum(resultArray[l])){
+					if((l+1 != resArrLen) && isNum(resultArray[l+1])) 
+						return 'Invalid Syntax: missing operator';
 				}
 				if(isDigit(resultArray[l])){
 					if(add){
