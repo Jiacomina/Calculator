@@ -26,18 +26,16 @@ $(document).ready(function(){
 	$("#small-font").on("click", function(){
 		fontsize = parseInt($('.line').css("font-size")) - 1;
 		$('.line').css('font-size', fontsize + "px");
-		$('.output-div').css('font-size', (fontsize) + "px");
 		$('.line').css('min-height', fontsize + "px");
 	});
 	$("#large-font").on("click", function(){
 		fontsize = parseInt($('.line').css("font-size")) + 1;
 		$('.line').css('font-size', fontsize + "px");
-		$('.output-div').css('font-size', (fontsize) + "px");
 		$('.line').css('min-height', fontsize + "px");
 	});
 
 	$("#clear-all").on("click", function(){
-		$(".input-div, .output-div").remove();
+		$(".row").remove();
 		$('textarea').val("");
 	});
 
@@ -122,7 +120,7 @@ $(document).ready(function(){
 	$(document).on('keypress', function (event) {
 		$("#display-top").focus();
 	    var regex = new RegExp("^[0-9.]+$");
-	    var spregex = new RegExp("^[0-9. ]+$");
+	    var spregex = new RegExp("^[0-9e. ]+$");
 	    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
 	    if (!regex.test(key)) { // not a valid character
 	    	event.preventDefault();
@@ -144,7 +142,7 @@ $(document).ready(function(){
 	    		$('textarea').val($('textarea').val() + ' ' + key);
 	    	}
 	    }
-	    
+
 	});
 
 	$(document).on('click', function (event) {
@@ -163,6 +161,7 @@ function growTextArea(){
 	content = null;
 
 	hiddenDiv.addClass('hidden-div line');
+	hiddenDiv.css('font-size', fontsize + 'px');
 
 	$('.screen').append(hiddenDiv);
 
@@ -174,24 +173,26 @@ function growTextArea(){
 
 function toggleDisplayMode(){
 	if(dayMode == true){ // change display mode to night
-		$("#toggle-display-button").addClass("night-mode-button");
-		$(".button").addClass("night-button");
-		$(".orange-button").addClass("dark-orange-button");
-		$(".green-button").addClass("blue-button");
-		$(".screen").addClass("night-screen");
-		$(".app-container").addClass("night-app-container");
-		$(".grey-button").addClass("black-button");
+		$("#toggle-display-button")	.addClass("night-mode-button");
+		$(".button")		.addClass("night-button");
+		$(".orange-button")	.addClass("dark-orange-button");
+		$(".green-button")	.addClass("blue-button");
+		$(".screen")		.addClass("night-screen");
+		$(".app-container")	.addClass("night-app-container");
+		$(".grey-button")	.addClass("black-button");
+		$(".output-div")	.addClass("output-div-night");
 		dayMode = false;
 	}
 	else{
 		//displayMode == "night" change to day
 		$("#toggle-display-button").removeClass("night-mode-button");
-		$(".button").removeClass("night-button");
-		$(".orange-button").removeClass("dark-orange-button");
-		$(".green-button").removeClass("blue-button");
-		$(".screen").removeClass("night-screen");
-		$(".app-container").removeClass("night-app-container");
-		$(".grey-button").removeClass("black-button");
+		$(".button")		.removeClass("night-button");
+		$(".orange-button")	.removeClass("dark-orange-button");
+		$(".green-button")	.removeClass("blue-button");
+		$(".screen")		.removeClass("night-screen");
+		$(".app-container")	.removeClass("night-app-container");
+		$(".grey-button")	.removeClass("black-button");
+		$(".output-div")	.removeClass("output-div-night");
 		dayMode = true;
 	}
 }
@@ -214,16 +215,24 @@ function getResult(){
 
 	// create output div to display answer
 	outputDiv = $(document.createElement('div'));
-	outputDiv.html('= ' + answer);
 	outputDiv.addClass('output-div line');
-	if(!isDigit(answer)){
+
+	if(answer == 'Infinity'){
+		outputDiv.html('~ ' + answer);
+		answer = oldAnswer;
+	}
+	else if(!(isDigit(answer) || isExp(answer))){
 		outputDiv.addClass('error-text');
+		outputDiv.html(answer);
+		answer = oldAnswer;
 	}
 	else{
-		if(oldAnswer == null){
-			$('#answer').removeClass('disable-button'); // 2
-		}
+		$('#answer').removeClass('disable-button');
+		answer = parseFloat(answer);
+		console.log(answer.toPrecision(6));
+		outputDiv.html('= ' + parseFloat(answer.toPrecision(6)));
 	}
+
 	row.append(outputDiv);
 
 	input = $(document.getElementById("display-top"));
@@ -234,23 +243,19 @@ function getResult(){
 	objDiv.scrollTop = objDiv.scrollHeight;
 
 	// ensure output and input div have correct font-size
-	$('.input-div').css('font-size', fontsize + 'px');
-	$('.output-div').css('font-size', fontsize + 'px');
+	$('.line').css('font-size', fontsize + 'px');
+	$('.line').css('min-height', fontsize + 'px');
 
-	$(".row")
-      .mouseover(function() {
-        $(this).css('background-color', 'rgba(112, 192, 201,0.1)');
+	var closeRow = $(document.createElement('div'));
+	closeRow.addClass('close-row');
+	closeRow.html('&times;');
+	row.append(closeRow);
 
-        // add close row button
-		closeRow = $(document.createElement('button'));
-		closeRow.addClass('close-row');
-		closeRow.html('<img src = "https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-x-mark-2.png&r=0&g=0&b=0" class = "close-icon">');
-		$(this).append(closeRow);
-      })
-      .mouseout(function() {
-        $(this).css('background-color', 'transparent');
-        $('.close-row').remove();
-    });
+	$('.close-row').on('click', function(){
+		var parent = $(this).parent();
+		parent.remove();
+	});
+
 }
 
 function calResult(equation){
@@ -281,7 +286,9 @@ function calResult(equation){
 				return 'Error: cannot end expression with operator.'; //invalid syntax, sign/s not valid because it is not succeeded by a number.
 			}
 	while( i < eqLength){
+		if(equation[i] == 'Infinity') return equation[i];
 		if(!(/^[0-9e\u00F7\u00D7\.\+\-]+$/.test(equation[i]))){
+			console.log(equation);
 			return 'Invalid Syntax at: ' + i + "in " + equation[i] + ".";
 		}
 		if(isSign(equation[i])){
@@ -319,7 +326,9 @@ function calResult(equation){
 				if(resultArray[k+2] == '-') result = -1;
 				offset = 1;
 			}
-			if(!(isNum(resultArray[k+2+offset]))){
+			if(!(isNum(resultArray[k+2+offset])) &&!(isExp(resultArray[k+2+offset]))){
+				console.log(resultArray);
+				console.log(resultArray[k+2+offset]);
 				return 'Error: duplicate orperator.';
 			}
 			else{
@@ -355,10 +364,10 @@ function calResult(equation){
 					continue;
 				}
 				if(isNum(resultArray[l])){
-					if((l+1 != resArrLen) && isNum(resultArray[l+1])) 
+					if((l+1 != resArrLen) && isNum(resultArray[l+1]))
 						return 'Invalid Syntax: missing operator';
 				}
-				if(isDigit(resultArray[l])){
+				if(isDigit(resultArray[l]) || isExp(resultArray[l])){
 					if(add){
 						result += parseFloat(resultArray[l]);
 					}
@@ -378,15 +387,22 @@ function calResult(equation){
 	return result;
 }
 
-function isSign(letter){
-	return (letter == '+' || letter == '-');
+function isSign(char){
+	return (char == '+' || char == '-');
 }
-function isNum(letter){
-	return /^[0-9\.]+$/.test(letter);
+function isNum(str){
+	return /^[0-9\.]+$/.test(str);
 }
-function isDigit(letter){
-	return /^[0-9\.\+\-]+$/.test(letter);
+function isExp(num){
+	// str = str + "";
+	// return str.indexOf("e");
+	num = parseFloat(num);
+	if(isNaN(num)) return false;
+	return num = num.toExponential();
 }
-function isMultOrDiv(letter){
-	return (letter == '\u00D7' /*multiply*/|| letter == '\u00F7'/*divide*/);
+function isDigit(str){
+	return /^[0-9\.\+\-]+$/.test(str);
+}
+function isMultOrDiv(char){
+	return (char == '\u00D7' /*multiply*/|| char == '\u00F7'/*divide*/);
 }
