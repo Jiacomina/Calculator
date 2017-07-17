@@ -82,7 +82,6 @@ overflow: hidden;
 .screen{
 	position: relative;
 	display: block;
-	padding-top: 0px;
 	background: #F2F2F2;
 	height: calc(100% - 230px);
 	text-align: right;
@@ -271,6 +270,7 @@ textarea{
 	width: 75%;
 	margin: 0px;
 	padding: 0px;
+	padding-top: 10px;
 	resize: none;
 	overflow: hidden;
 }
@@ -288,7 +288,7 @@ textarea{
 	visibility: visible;
 }
 .row:hover{
-	background-color: rgba(170, 170, 170,0.05);
+	background-color: rgba(170, 170, 170, 0.08);
 }
 
 .row:first-of-type{
@@ -302,18 +302,18 @@ textarea{
 	border: none;
 	padding: 0px;
 	margin: 5px;
-	color: grey;
+	color: #b3002d;
 	margin-top: 1px;
 	top: 0px;
 	font-size: 20px;
-	font-weight: lighter;
+	font-weight: normal;
 	visibility: hidden;
 	cursor: pointer;
 }
 .close-row:hover {
 	visibility: visible;
-	font-weight: normal;
-	color: black;
+	font-weight: bolder;
+	color: #b3002d;
 }
 
 .hidden-div{
@@ -342,11 +342,15 @@ textarea{
 .output-div-night{
 	border-bottom: 1px solid rgba(255,255,255,0.2);
 }
-.output-div:last-of-type {
-}
 .input-div{
 	text-align: left;
 	margin-top: 0px;
+	margin-bottom: 0px;
+	opacity: 0.8;
+}
+.input-div:first{
+	text-align: left;
+	margin-top: -10px;
 	margin-bottom: 0px;
 	opacity: 0.8;
 }

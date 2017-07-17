@@ -10,6 +10,7 @@
 var dayMode = true;
 var answer = null;
 var fontsize = parseInt($('.line').css('font-size'));
+var numrows = 0;
 $(document).ready(function(){
 
 	// disable keyboard on small screens
@@ -38,7 +39,8 @@ $(document).ready(function(){
 
 	$("#clear-all").on("click", function(){
 		$(".row").remove();
-		$('textarea').val("");
+		$('textarea').val("") .css("padding-top", "10px");
+		numrows = 0;
 	});
 
 	$("#zero").on("click", function(){
@@ -207,6 +209,9 @@ function getResult(){
 	row.addClass('row');
 	$('.screen').append(row);
 
+	$('textarea').css('padding-top', '0px');
+	numrows++;
+
 	// turn input into read-only div
 	inputDiv = $(document.createElement('div'));
 	inputDiv.html(equation);
@@ -258,6 +263,8 @@ function getResult(){
 	$('.close-row').on('click', function(){
 		var parent = $(this).parent();
 		parent.remove();
+		numrows--;
+		if(numrows == 0) $('textarea').css('padding-top', '10px');
 	});
 
 }
