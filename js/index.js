@@ -156,6 +156,7 @@ $(document).ready(function(){
 
 // adjust textarea input size when document clicked or key pressed
 function growTextArea(){
+	$('.clear-all').css('display', 'inline-block');
 	var txt = $('.display-top');
 	hiddenDiv = $(document.createElement('div'));
 	content = null;
