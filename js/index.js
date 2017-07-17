@@ -26,12 +26,14 @@ $(document).ready(function(){
 	$("#small-font").on("click", function(){
 		fontsize = parseInt($('.line').css("font-size")) - 1;
 		$('.line').css('font-size', fontsize + "px");
-		$('.line').css('min-height', fontsize + "px");
+		$('.line').css('min-height', fontsize*1.5 + "px");
+		$('.error-text').css('font-size', "13px");
 	});
 	$("#large-font").on("click", function(){
 		fontsize = parseInt($('.line').css("font-size")) + 1;
 		$('.line').css('font-size', fontsize + "px");
-		$('.line').css('min-height', fontsize + "px");
+		$('.line').css('min-height', fontsize*1.5 + "px");
+		$('.error-text').css('font-size', "13px");
 	});
 
 	$("#clear-all").on("click", function(){
@@ -245,7 +247,8 @@ function getResult(){
 
 	// ensure output and input div have correct font-size
 	$('.line').css('font-size', fontsize + 'px');
-	$('.line').css('min-height', fontsize + 'px');
+	$('.line').css('min-height', fontsize*1.5 + 'px');
+	$('.error-text').css('font-size', "13px");
 
 	var closeRow = $(document.createElement('div'));
 	closeRow.addClass('close-row');

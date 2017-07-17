@@ -354,6 +354,7 @@ textarea{
 .error-text{
 	color: red;
 	font-size: 13px;
+	min-font-size: 10px;
 	opacity: 0.7;
 }
 .no-select {
