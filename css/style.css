@@ -82,17 +82,15 @@ overflow: hidden;
 .screen{
 	position: relative;
 	display: block;
+	padding-top: 0px;
 	background: #F2F2F2;
-	height: calc(100% - 230px - 20px);
+	height: calc(100% - 230px);
 	text-align: right;
-	padding: 10px;
 	overflow-x: hidden;
 	overflow-y: hidden;
-	padding-right: 20px;
 }
 .screen:hover {
-	overflow-y: scroll;
-	padding-right: 10px;
+	overflow-y: auto;
 }
 .menu-bar{
 	position: relative;
@@ -241,9 +239,6 @@ overflow: hidden;
 .blue-button{
 	background-color: #408F92;
 }
-.display-top{
-	text-align: left;
-}
 .small-button-font{
 	font-size: 18px;
 }
@@ -251,7 +246,6 @@ overflow: hidden;
 	font-size: 25px;
 }
 .line{
-	background-color: inherit;
 	width: 75%;
 	font-family: 'Open Sans';
 	font-size: 17px;
@@ -260,9 +254,15 @@ overflow: hidden;
 	display: block;
 	color: inherit;
 	border: none;
+	background: transparent;
 	outline: none;
 	min-height: 27px;
 	margin: 10px;
+}
+.display-top{
+	text-align: left;
+	margin-top: 10px;
+	margin-left: 15px;
 }
 textarea{
 	overflow: hidden;
@@ -273,6 +273,34 @@ textarea{
 	resize: none;
 	overflow: hidden;
 }
+.row{
+	width: calc(100% - 20px);
+	display: block;
+	margin: 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
+	border: 0px;
+}
+.row:first-of-type{
+	padding-top: 20px;
+}
+.close-row {
+	position: absolute;
+	right: 3px;
+	background: transparent;
+	outline: none;
+	border: none;
+	padding: 0px;
+	margin: 5px;
+	top: 3px;
+	height: 7px;
+	width: 7px;
+}
+.close-icon{
+	height: 7px;
+}
+
 .hidden-div{
 	display: block;
 	margin-bottom: 0px;
@@ -291,9 +319,15 @@ textarea{
 	text-align: right;
 	margin-top: 0px;
 	margin-left: 0px;
-	color: #70C0C9;
-	font-weight: bold;
+	font-weight: bolder;
+	font-size: 16px;
+	margin-bottom: 0px;
 	border-bottom: 1px solid lightgrey;
+}
+.output-div-night{
+	border-bottom: 1px solid darkgrey;
+}
+.output-div:last-of-type {
 }
 .input-div{
 	text-align: left;
@@ -301,6 +335,7 @@ textarea{
 	margin-bottom: 0px;
 	opacity: 0.8;
 }
+
 .error-text{
 	color: red;
 	font-size: 13px;

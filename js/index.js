@@ -9,7 +9,7 @@
  */
 var dayMode = true;
 var answer = null;
-var fontsize = $('.line').css('font-size');
+var fontsize = parseInt($('.line').css('font-size'));
 $(document).ready(function(){
 
 	// disable keyboard on small screens
@@ -26,11 +26,13 @@ $(document).ready(function(){
 	$("#small-font").on("click", function(){
 		fontsize = parseInt($('.line').css("font-size")) - 1;
 		$('.line').css('font-size', fontsize + "px");
+		$('.output-div').css('font-size', (fontsize) + "px");
 		$('.line').css('min-height', fontsize + "px");
 	});
 	$("#large-font").on("click", function(){
 		fontsize = parseInt($('.line').css("font-size")) + 1;
 		$('.line').css('font-size', fontsize + "px");
+		$('.output-div').css('font-size', (fontsize) + "px");
 		$('.line').css('min-height', fontsize + "px");
 	});
 
@@ -165,9 +167,7 @@ function growTextArea(){
 	$('.screen').append(hiddenDiv);
 
     content = txt.val();
-    console.log(content);
     hiddenDiv.html(content);
-    console.log("height: " + hiddenDiv.height());
     $('.display-top').css('height', hiddenDiv.height());
     $('.hidden-div').remove();
 }
@@ -199,29 +199,32 @@ function getResult(){
 	var oldAnswer = answer;
 	var equation = $('textarea').val();
 	if(equation == "") return;
+	row = $(document.createElement('div'));
+	row.addClass('row');
+	$('.screen').append(row);
 
 	// turn input into read-only div
 	inputDiv = $(document.createElement('div'));
 	inputDiv.html(equation);
 	inputDiv.addClass('input-div line');
-	$('.screen').append(inputDiv);
+	row.append(inputDiv);
 
 	// calculate result
 	answer = calResult(equation);
 
 	// create output div to display answer
 	outputDiv = $(document.createElement('div'));
-	outputDiv.html(answer);
+	outputDiv.html('= ' + answer);
 	outputDiv.addClass('output-div line');
 	if(!isDigit(answer)){
 		outputDiv.addClass('error-text');
 	}
 	else{
 		if(oldAnswer == null){
-			$('#answer').removeClass('disable-button'); // 
+			$('#answer').removeClass('disable-button'); // 2
 		}
 	}
-	$('.screen').append(outputDiv);
+	row.append(outputDiv);
 
 	input = $(document.getElementById("display-top"));
 	$('.screen').append(input);
@@ -231,7 +234,23 @@ function getResult(){
 	objDiv.scrollTop = objDiv.scrollHeight;
 
 	// ensure output and input div have correct font-size
-	$('.input-div , .output-div').css('font-size', fontsize + 'px');
+	$('.input-div').css('font-size', fontsize + 'px');
+	$('.output-div').css('font-size', fontsize + 'px');
+
+	$(".row")
+      .mouseover(function() {
+        $(this).css('background-color', 'rgba(112, 192, 201,0.1)');
+
+        // add close row button
+		closeRow = $(document.createElement('button'));
+		closeRow.addClass('close-row');
+		closeRow.html('<img src = "https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2012/png/iconmonstr-x-mark-2.png&r=0&g=0&b=0" class = "close-icon">');
+		$(this).append(closeRow);
+      })
+      .mouseout(function() {
+        $(this).css('background-color', 'transparent');
+        $('.close-row').remove();
+    });
 }
 
 function calResult(equation){
@@ -263,7 +282,6 @@ function calResult(equation){
 			}
 	while( i < eqLength){
 		if(!(/^[0-9e\u00F7\u00D7\.\+\-]+$/.test(equation[i]))){
-			console.log("Invalid Syntax: " + equation + ".");
 			return 'Invalid Syntax at: ' + i + "in " + equation[i] + ".";
 		}
 		if(isSign(equation[i])){
@@ -276,7 +294,6 @@ function calResult(equation){
 				}
 				else{
 					resultArray.push(sign);
-					console.log("Index: " + i + " " + resultArray);
 					i = j;
 					break;
 				}
@@ -291,12 +308,10 @@ function calResult(equation){
 	var signedArrLen = resultArray.length;
 
 	// Combine x and ÷
-	console.log("combining x and /");
 	if(isMultOrDiv(resultArray[0]) || isMultOrDiv(resultArray[signedArrLen-1])) // cannot begin or end with multiplication or division operator
 		return 'Error: begins or ends with invalid operator.';
 
 	for(var k = 0; k < signedArrLen; k++){
-		console.log("k: " + k + "  " + resultArray);
 		if(isMultOrDiv(resultArray[k+1])){
 			var result = 1;
 			var offset = 0;
@@ -331,7 +346,6 @@ function calResult(equation){
 			result = 0;
 			var add = true;
 			for(var l = 0; l < resArrLen; l++){
-				console.log("l: " + l + "   " + result);
 				if(resultArray[l] == '+'){
 					//do nothing
 					continue;
