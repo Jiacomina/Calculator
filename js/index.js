@@ -340,7 +340,7 @@ function calResult(equation){
 			if(!(isNum(resultArray[k+2+offset])) &&!(isExp(resultArray[k+2+offset]))){
 				console.log(resultArray);
 				console.log(resultArray[k+2+offset]);
-				return 'Error: duplicate orperator.';
+				return 'Error: duplicate operator.';
 			}
 			else{
 				if(resultArray[k+1] == '\u00D7'){//multiply
@@ -350,7 +350,7 @@ function calResult(equation){
 					result *= parseFloat(resultArray[k])/parseFloat(resultArray[k+2+offset]);
 				}
 				else{
-					return 'Error: Invalid Operator ' + resultArray[k+1] + ".";
+					return 'Error: invalid operator ' + resultArray[k+1] + ".";
 				}
 				resultArray = resultArray.slice(0,k).concat([result]).concat(resultArray.slice(k+3+offset));
 				k--;
@@ -389,7 +389,7 @@ function calResult(equation){
 					continue;
 				}
 				else{
-					return 'Error: Invalid character ' + resultArray[l] + ".";
+					return 'Error: invalid character ' + resultArray[l] + ".";
 				}
 			}
 		}
