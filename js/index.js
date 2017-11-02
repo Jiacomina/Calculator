@@ -178,7 +178,10 @@ function growTextArea(){
 
 function toggleDisplayMode(){
 	if(dayMode == true){ // change display mode to night
+		document.getElementById("toggle-display-button").src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2016/png/iconmonstr-weather-114.png&r=255&g=255&b=255";
+
 		$("#toggle-display-button")	.addClass("night-mode-button");
+
 		$(".button")		.addClass("night-button");
 		$(".orange-button")	.addClass("dark-orange-button");
 		$(".green-button")	.addClass("blue-button");
@@ -190,6 +193,7 @@ function toggleDisplayMode(){
 	}
 	else{
 		//displayMode == "night" change to day
+		document.getElementById("toggle-display-button").src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2016/png/iconmonstr-weather-1.png&r=255&g=255&b=255";
 		$("#toggle-display-button").removeClass("night-mode-button");
 		$(".button")		.removeClass("night-button");
 		$(".orange-button")	.removeClass("dark-orange-button");
@@ -237,8 +241,8 @@ function getResult(){
 	else{
 		$('#answer').removeClass('disable-button');
 		answer = parseFloat(answer);
-		console.log(answer.toPrecision(6));
-		outputDiv.html('= ' + parseFloat(answer.toPrecision(6)));
+		console.log(answer.toPrecision(10));
+		outputDiv.html('= ' + parseFloat(answer.toPrecision(10)));
 	}
 
 	row.append(outputDiv);

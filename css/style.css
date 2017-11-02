@@ -71,14 +71,6 @@ overflow: hidden;
 	cursor: pointer;
 }
 
-.day-mode-button{
-	content: url("https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2016/png/iconmonstr-weather-1.png&r=255&g=255&b=255");
-}
-.night-mode-button{
-	content: url("https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2016/png/iconmonstr-weather-114.png&r=255&g=255&b=255");
-	height: 10px;
-}
-
 .screen{
 	position: relative;
 	display: block;
@@ -128,9 +120,6 @@ overflow: hidden;
 	cursor: pointer;
 }
 
-.clear-all-icon{
-	content: url("https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2013/png/iconmonstr-trash-can-1.png&r=255&g=255&b=255");
-}
 .tooltiptext {
     visibility: hidden;
     background-color: white;
